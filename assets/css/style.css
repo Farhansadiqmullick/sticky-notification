@@ -6,7 +6,7 @@
     overflow: hidden;
     position: relative;
     transition: all 500ms ease;
-    background: linear-gradient(90deg, #0b0f1e 0%, #000d3d 50.41%, #0b0f1e 100%);
+    background: linear-gradient(90deg, #450817 0%, #450817 50.41%, #450817 100%);
 }
 @media (min-width: 1170px) {
     .top_bar {

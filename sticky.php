@@ -30,11 +30,11 @@ class Sticky
     function sticky_plugin_assets_load()
     {
         wp_enqueue_style('bootstrap-min-css', plugin_dir_url(__FILE__) . 'assets/css/bootstrap.min.css', null, '', 'all');
-        wp_enqueue_style('style-css', plugin_dir_url(__FILE__) . 'assets/css/style.css', null, rand(111, 999), 'all');
+        wp_enqueue_style('sticky-style-css', plugin_dir_url(__FILE__) . 'assets/css/style.css', null, rand(111, 999), 'all');
         wp_enqueue_script('jquery', plugin_dir_url(__FILE__) . 'assets/js/jquery-3.2.1.slim.min.js', '', '', true);
         wp_enqueue_script('popper-js', plugin_dir_url(__FILE__) . 'assets/js/popper.min.js', ['jquery'], '', true);
         wp_enqueue_script('bootstrap-min-js', plugin_dir_url(__FILE__) . 'assets/js/bootstrap.min.js', ['jquery'], '', true);
-        wp_enqueue_script('main-js', plugin_dir_url(__FILE__) . 'assets/js/main.js', ['jquery'], '', true);
+        wp_enqueue_script('sticky-main-js', plugin_dir_url(__FILE__) . 'assets/js/main.js', ['jquery'], '', true);
     }
         
     function sticky_plugin_admin_menu(){
@@ -73,29 +73,29 @@ class Sticky
 
     function sticky_navbar_display($sticky)
     {
-        $leftSticker =  plugin_dir_url( __FILE__ ).'assets/img/left.svg';
+        $leftSticker =  plugin_dir_url( __FILE__ ).'assets/img/Frame4058.svg';
         $rightSticker =  plugin_dir_url( __FILE__ ).'assets/img/right.svg';
-        $token1 = plugin_dir_url( __FILE__ ).'assets/img/tocken-1.svg';
-        $token2 = plugin_dir_url( __FILE__ ).'assets/img/tocken-2.svg';
-        $offerSticker1 = plugin_dir_url( __FILE__ ).'assets/img/tocken-3.svg';
-        $offerSticker2 = plugin_dir_url( __FILE__ ).'assets/img/tocken-4.svg';
+        $token1 = plugin_dir_url( __FILE__ ).'assets/img/tweet.svg';
+        $token2 = plugin_dir_url( __FILE__ ).'assets/img/86.svg';
+        $offerSticker1 = plugin_dir_url( __FILE__ ).'assets/img/deals.svg';
+        $offerSticker2 = plugin_dir_url( __FILE__ ).'assets/img/grab.svg';
 
 
         $sticky .= <<<EOD
             <div class="top_bar limeted-offer"><span class="close_bar"></span>
-            <img class="badge-1" src="{$leftSticker}" alt="Sticker">
-            <img class="badge-2" src="{$rightSticker}" alt="Sticker">
+            <img class="badge-1" src="{$leftSticker}" alt="">
+            <img class="badge-2" src="{$rightSticker}" alt="">
 
             <a href="https://wppool.dev/offers" class="hidden_btn "></a>
 
             <div class="container">
                 <div class="offer_section">
 
-                    <img class="offer-sticker-1" src="{$token1}" alt="Sticker">
+                    <img class="offer-sticker-1" src="{$token1}" alt="">
 
-                    <img class="offer-sticker-2" src="{$token2}" alt="Sticker">
+                    <img class="offer-sticker-2" src="{$token2}" alt="">
 
-                    <div id="offer_limit" data-limit="2022-02-14T20:00:00+06:00">
+                    <div id="offer_limit" data-limit="2022-03-03T20:00:00+06:00">
                         <ul>
                             <li>
                                 <p class="time">01 <span>:</span></p> <span>Days</span>
@@ -111,8 +111,8 @@ class Sticky
                             </li>
                         </ul>
                     </div>
-                    <img class="offer-sticker-3" src="{$offerSticker1}" alt="Sticker">
-                    <img class="offer-sticker-4" src="{$offerSticker2}" alt="Sticker">
+                    <img class="offer-sticker-3" src="{$offerSticker1}" alt="">
+                    <img class="offer-sticker-4" src="{$offerSticker2}" alt="">
                 </div>
             </div>
         </div>
