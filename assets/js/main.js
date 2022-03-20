@@ -22,8 +22,9 @@ $(document).ready(function(){
               countDownTime = countDownTime + newInterval;
             }
           }, 1);
-          console.log(offerTime);
+          const timerColor = document.querySelector('.offer_section').getAttribute('data-timercolor');
           setInterval(() => {
+            console.log(timerColor);
             let now = new Date().getTime();
             let time = countDownTime - now;
             let days = Math.floor(time / (1000 * 60 * 60 * 24));
@@ -36,16 +37,16 @@ $(document).ready(function(){
               <ul>
                   <li><p class='time'>${FormatMe(
                     days
-                  )}  <span>:</span></p> <span>Days</span></li>
+                  )}  <span>:</span></p> <span style="color:${timerColor}">Days</span></li>
                   <li><p class='time'>${FormatMe(
                     hours
-                  )}  <span>:</span></p> <span>Hours</span></li>
+                  )}  <span>:</span></p> <span style="color:${timerColor}">Hours</span></li>
                   <li><p class='time'>${FormatMe(
                     minutes
-                  )}  <span>:</span></p> <span>Minutes</span></li>
+                  )}  <span>:</span></p> <span style="color:${timerColor}">Minutes</span></li>
                   <li><p class='time n-dot'>${FormatMe(
                     seconds
-                  )}</p> <span>Seconds</span></li>
+                  )}</p> <span style="color:${timerColor}">Seconds</span></li>
               </ul>
               `;
             }

@@ -12,6 +12,8 @@ Domain Path: /languages/
 Plugin Type: Piklist
 */
 
+if (!defined('ABSPATH')) { exit; }
+
 class Sticky
 {
 
@@ -73,23 +75,39 @@ class Sticky
 
     function sticky_navbar_display($sticky)
     {
-        $leftSticker =  plugin_dir_url( __FILE__ ).'assets/img/Frame4058.svg';
-        $rightSticker =  plugin_dir_url( __FILE__ ).'assets/img/right.svg';
-        $token1 = plugin_dir_url( __FILE__ ).'assets/img/tweet.svg';
-        $token2 = plugin_dir_url( __FILE__ ).'assets/img/86.svg';
-        $offerSticker1 = plugin_dir_url( __FILE__ ).'assets/img/deals.svg';
-        $offerSticker2 = plugin_dir_url( __FILE__ ).'assets/img/grab.svg';
+        
+            $args = array(
+                'post_type'   => 'sticky-topbar',
+                'post_status' => 'publish',
+                'meta_key'    => 'sticky_metadata_display',
+                'meta_value'  => 1
+            );
+            $query  = new WP_Query($args);
+            while ($query->have_posts()) {
+                $query->the_post();
+        $left_color = get_post_meta( get_the_ID(), 'sticky_bg_color', true );
+        $middle_color =  get_post_meta( get_the_ID(), 'sticky_middle_color', true );
+        $right_color = get_post_meta( get_the_ID(), 'sticky_right_bg_color', true );
+        
+        $leftSticker =  wp_get_attachment_image_src(get_post_meta( get_the_ID(), 'sticky_topbar_left_image_field', true ))[0];
+        $rightSticker =  wp_get_attachment_image_src(get_post_meta( get_the_ID(), 'sticky_topbar_right_image_field', true ))[0];
+        $token1 = wp_get_attachment_image_src(get_post_meta( get_the_ID(), 'sticky_token1_image', true ))[0];
+        $token2 = wp_get_attachment_image_src(get_post_meta( get_the_ID(), 'sticky_token2_image', true ))[0];
+        $offerSticker1 = wp_get_attachment_image_src(get_post_meta( get_the_ID(), 'offer_sticker1', true ))[0];
+        $offerSticker2 = wp_get_attachment_image_src(get_post_meta( get_the_ID(), 'offer_sticker2', true ))[0];
+        $offerURL = get_post_meta(get_the_ID(), 'sticky_topbar_offer_url', true);
+        $timerColor = get_post_meta(get_the_ID(), 'sticky_topbar_timer_color', true);
 
 
         $sticky .= <<<EOD
-            <div class="top_bar limeted-offer"><span class="close_bar"></span>
+            <div class="top_bar limeted-offer" style="background: linear-gradient(90deg, {$left_color} 0%, {$middle_color} 49.05%, {$right_color} 100%);"><span class="close_bar"></span>
             <img class="badge-1" src="{$leftSticker}" alt="">
             <img class="badge-2" src="{$rightSticker}" alt="">
 
-            <a href="https://wppool.dev/offers" class="hidden_btn "></a>
+            <a href="{$offerURL}" class="hidden_btn "></a>
 
             <div class="container">
-                <div class="offer_section">
+                <div class="offer_section" data-timercolor="{$timerColor}">
 
                     <img class="offer-sticker-1" src="{$token1}" alt="">
 
@@ -118,6 +136,7 @@ class Sticky
         </div>
 EOD;
 return $sticky;
+            }
     }
 }
 
